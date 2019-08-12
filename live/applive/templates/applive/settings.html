@@ -1,0 +1,80 @@
+{% extends 'applive/base.html' %}
+{% block title %}Settings{% endblock %}
+
+{% block document_ready %}
+ $("#form_language").hide();
+ $("#form_country").hide();
+ $("#form_search").hide();
+ $("#text_country").hide();
+ $("#text_lang").hide();
+
+
+ $('#demo').multiselect({
+    buttonWidth: '140px'
+});
+
+{% endblock %}
+
+{% block body %}
+
+<div class="container-fluid bodybg">
+    <form>
+    <div class="form-row">
+        <div class="form-group col-md-4"></div>
+
+        <div class="form-group col-md-4">
+          <label class="text-white" for="inputState">Prepared Country</label>
+          <select id="inputState" class="form-control">
+            {% for country in country_list %}
+                <option value="{{country.id}}" {% if country.id == prev_country_id %}selected="selected"{% endif %}>{{country.name}}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="form-group col-md-4"></div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-4"></div>
+
+        <div class="form-group col-md-4">
+          <label class="text-white" for="inputState">Prepared Language</label>
+          <select id="demo" multiple="multiple" >
+            {% for language in language_list %}
+                <option value="{{language.id}}" {% if language.id == prev_language_id %}selected="selected"{% endif %}>{{language.name}}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="form-group col-md-4"></div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-4"></div>
+
+        <div class="form-group col-md-4">
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+
+        <div class="form-group col-md-4"></div>
+    </div>
+
+
+       <!--  <div class="form-group col-md-6">
+         <label class="text-white" for="inputState">Prepared Language</label>
+         <select id="inputState" class="form-control">
+           <option selected>Choose...</option>
+           <option>...</option>
+         </select>
+       </div> -->
+
+
+</form>
+
+</div>
+
+
+{% endblock %}
+
+
+

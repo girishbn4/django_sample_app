@@ -1,0 +1,57 @@
+{% extends 'applive/base.html' %}
+{% block title %}RightNowh{% endblock %}
+{% block script %}
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#fancy").fancybox({
+            'width'             : '100%',
+            'height'            : '100%',
+            'autoScale'         : false,
+            'transitionIn'      : 'none',
+            'transitionOut'     : 'none',
+            'type'              : 'iframe'
+        });
+    });
+</script>
+{% endblock %}
+{% block body %}
+
+    <div class="container-fluid" style="background: #343a40">
+        <div class="container">
+            {% for channel in channels_list_result %}
+                {% if not forloop.counter|divisibleby:2 %}
+                    <div class="row">
+                        {% endif %}
+
+                    <div class="col-md-6">
+
+                        <div class="card" style="margin-top: 15px">
+                            <div class="card-body text-center">
+                                <img style="width: 100px; height: 100px" src="{{channel.logo.url}}" class="card-img-top" alt="...">
+                                <h5 class="card-title">{{channel.name}}</h5>
+                                <a data-fancybox href="https://www.youtube.com/watch?v=6UlZQ2ZZzq8" id="fancy" class="iframe btn btn-primary">Watch Live</a>
+                            </div>
+                        </div>
+
+
+                    </div>
+                   {% if forloop.counter|divisibleby:2 %}
+                    </div>
+                        {% endif %}
+
+            {% endfor %}
+
+
+        </div>
+
+        <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/kpfV38Hcnds" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <br />
+
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/ExCnr-Wb5i4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+    </div>
+
+{% endblock %}
+
+
+
